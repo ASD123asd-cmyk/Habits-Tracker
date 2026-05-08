@@ -1,0 +1,14 @@
+'use client';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { achievements, weeklyStudy } from '@/lib/sample-data';
+
+export function AnalyticsDashboard() {
+  return (
+    <section className="grid gap-6 lg:grid-cols-3">
+      <div className="glass-panel rounded-[2rem] p-6 lg:col-span-2"><p className="tiny-label">Weekly progress</p><h2 className="font-display text-3xl font-black">Study, sleep, score alignment</h2><div className="mt-6 h-72"><ResponsiveContainer><AreaChart data={weeklyStudy}><defs><linearGradient id="study" x1="0" x2="0" y1="0" y2="1"><stop offset="5%" stopColor="#00BFFF" stopOpacity={0.8}/><stop offset="95%" stopColor="#00BFFF" stopOpacity={0}/></linearGradient></defs><CartesianGrid stroke="rgba(255,255,255,.08)"/><XAxis dataKey="day" stroke="rgba(255,255,255,.5)"/><YAxis stroke="rgba(255,255,255,.5)"/><Tooltip contentStyle={{ background: '#050816', border: '1px solid rgba(255,255,255,.15)', borderRadius: 16 }}/><Area type="monotone" dataKey="study" stroke="#00BFFF" fill="url(#study)"/><Area type="monotone" dataKey="sleep" stroke="#CFEFFF" fill="transparent"/></AreaChart></ResponsiveContainer></div></div>
+      <div className="glass-panel rounded-[2rem] p-6"><p className="tiny-label">Scores</p><h2 className="font-display text-3xl font-black">Life stats</h2><div className="mt-5 space-y-4">{[['Discipline',92],['Focus',88],['Sleep',81],['Energy',79]].map(([label, value]) => <div key={label as string}><div className="flex justify-between text-sm"><span>{label}</span><span>{value}%</span></div><div className="mt-2 h-2 rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-aura to-silverAura" style={{ width: `${value}%` }} /></div></div>)}</div></div>
+      <div className="glass-panel rounded-[2rem] p-6 lg:col-span-2"><p className="tiny-label">Time distribution</p><h2 className="font-display text-3xl font-black">Where your week went</h2><div className="mt-6 h-64"><ResponsiveContainer><BarChart data={weeklyStudy}><CartesianGrid stroke="rgba(255,255,255,.08)"/><XAxis dataKey="day" stroke="rgba(255,255,255,.5)"/><YAxis stroke="rgba(255,255,255,.5)"/><Tooltip contentStyle={{ background: '#050816', border: '1px solid rgba(255,255,255,.15)', borderRadius: 16 }}/><Bar dataKey="score" fill="#00BFFF" radius={[12,12,0,0]}/></BarChart></ResponsiveContainer></div></div>
+      <div className="glass-panel rounded-[2rem] p-6"><p className="tiny-label">Achievements</p><h2 className="font-display text-3xl font-black">Training rewards</h2><div className="mt-5 space-y-3">{achievements.map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-white/5 p-3">🏆 {item}</div>)}</div><div className="mt-5 rounded-3xl border border-amber-300/20 bg-amber-300/10 p-4 text-sm text-amber-100">Burnout risk: low-moderate. Protect bedtime and schedule one guilt-free recovery block.</div></div>
+    </section>
+  );
+}
