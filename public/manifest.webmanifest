@@ -1,0 +1,13 @@
+{
+  "name": "Aura Exam OS",
+  "short_name": "Aura OS",
+  "description": "Anime-powered productivity operating system for high-stakes exam preparation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#00BFFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

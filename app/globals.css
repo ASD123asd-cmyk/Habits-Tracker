@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #050816;
+  color: white;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 191, 255, .22), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(207, 239, 255, .12), transparent 26%),
+    linear-gradient(135deg, rgba(0, 191, 255, .04), transparent 35%);
+  z-index: -3;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .22;
+  background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+  z-index: -2;
+}
+
+@layer components {
+  .glass-panel { @apply border border-white/10 bg-white/[.06] shadow-aura backdrop-blur-2xl; }
+  .aura-button { @apply rounded-2xl bg-aura px-5 py-3 font-bold text-void shadow-aura transition hover:-translate-y-0.5 hover:shadow-aura-strong focus:outline-none focus:ring-2 focus:ring-silverAura; }
+  .ghost-button { @apply rounded-2xl border border-white/15 bg-white/5 px-5 py-3 font-semibold text-white transition hover:bg-white/10; }
+  .tiny-label { @apply text-[11px] uppercase tracking-[.26em] text-cyanGlow/80; }
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #050816; }
+::-webkit-scrollbar-thumb { background: rgba(0,191,255,.45); border-radius: 999px; }
